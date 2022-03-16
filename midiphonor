@@ -1,0 +1,16 @@
+#!/bin/bash
+VERSION=0.0.1
+HELP="midiphonor init script"
+
+if [ -z $1 -o $1 = "-h" -o $1 = "--help" ];then
+  echo $HELP
+elif [ $1 = "version" -o $1 = "v" -o $1 = "-v" ]; then
+  echo $VERSION
+elif [ $1 = "dev" ]; then
+  shift
+  docker run -it -v $(pwd):/app -w /app -p 1234:1234 node yarn parcel src/index.html
+elif [ $1 = "i" -o $1 = "install" ]; then
+  shift
+  docker run -it -v $(pwd):/app -w /app -p 1234:1234 node yarn add "$@"
+
+fi
