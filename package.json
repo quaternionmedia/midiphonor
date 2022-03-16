@@ -1,0 +1,27 @@
+{
+  "name": "midiphonor",
+  "version": "0.0.1",
+  "description": "a MIDI implementation of the Holophonor, using Tone.js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quaternionmedia/midiphonor.git"
+  },
+  "keywords": [
+    "holophonor",
+    "loop",
+    "audio",
+    "music",
+    "midi",
+    "tone.js"
+  ],
+  "author": "Quaternion Media, LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quaternionmedia/midiphonor/issues"
+  },
+  "homepage": "https://github.com/quaternionmedia/midiphonor#readme"
+}
