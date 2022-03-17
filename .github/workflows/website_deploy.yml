@@ -22,7 +22,7 @@ jobs:
         run: yarn install
 
       - name: build files
-        run: yarn parcel build --dist-dir dist src/index.html
+      - run: yarn parcel build --dist-dir dist src/index.html
 
       - name: deploy
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
