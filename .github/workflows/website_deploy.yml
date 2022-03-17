@@ -24,8 +24,8 @@ jobs:
       - name: build files
         run: yarn parcel build --public-url /midiphonor src/index.html
 
-      - name: deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages
-          folder: dist # The folder the action should deploy.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
