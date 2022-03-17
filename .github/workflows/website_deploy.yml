@@ -14,13 +14,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+
       - name: install dependencies
         uses: actions/setup-node@v2
         with:
           node-version: '16'
       - run: yarn install
+
       - name: build files
-        run: yarn parcel build --dist-dir dist src/index.html
+        run: yarn parcel build --public-url /midiphonor src/index.html
 
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
