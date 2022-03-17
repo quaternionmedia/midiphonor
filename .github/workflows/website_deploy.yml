@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-        run: yarn install
+      - run: yarn install
       # - name: build files
       #   run: yarn parcel build --dist-dir dist src/index.html
       #
