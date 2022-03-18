@@ -7,16 +7,16 @@ export const TransportView = () => {
 }
 
 export const Bpm = () => [BpmDec(), m('', {}, Transport.bpm.value), BpmInc()]
-export const TransportControls = () => [Stop(), Pause(), Start(), CurrentTime()]
+export const TransportControls = () => [Stop(), Pause(), Start(), Toggle(), CurrentTime()]
 export const BpmInc = () =>
   m('input[type=button]', {
     value: '+',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value + 1, 1),
+    onclick: () => Transport.bpm.rampTo(Transport.bpm.value + 10, 1),
   })
 export const BpmDec = () =>
   m('input[type=button]', {
     value: '-',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value - 1, 1),
+    onclick: () => Transport.bpm.rampTo(Transport.bpm.value - 10, 1),
   })
 export const Start = () =>
   m('input[type=button]', {
@@ -35,4 +35,10 @@ export const Pause = () =>
     value: '||',
     onclick: () => Transport.pause(),
   })
+export const Toggle = () =>
+  m('input[type=button]', {
+    value: '>/||',
+    onclick: () => Transport.toggle(),
+})
+
 export const CurrentTime = () => m('', {}, Transport.seconds)

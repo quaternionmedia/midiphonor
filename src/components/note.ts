@@ -1,15 +1,18 @@
 import m from 'mithril'
 import { Synth } from 'tone'
 
-export const Note = () => {
+export function playNote(pitch, duration){
   const synth = new Synth().toDestination()
+  synth.triggerAttackRelease(pitch, duration)
+}
 
+export const Note = () => {
   return {
     view: vnode =>
       m('input[type=button]', {
-        value: 'start',
+        value: 'c3',
         onclick: e => {
-          synth.triggerAttackRelease('c4', '8n')
+          playNote('c3', '8n')
         },
       }),
   }
