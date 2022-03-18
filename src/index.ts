@@ -1,18 +1,15 @@
 import m from 'mithril'
-import { Synth } from 'tone'
+import { Note } from './components/note'
 
-export const Home = () => {
-  return {
-    view: (vnode) =>
-      m('input[type=button]', {
-        value: 'start',
-        onclick: (e) => {
-          const synth = new Synth().toDestination()
-          synth.triggerAttackRelease('c4', '8n')
-        },
-      }),
-  }
 }
+
+
+export const Home = {
+  view: vnode => [
+    m(Note),
+  ]
+}
+
 
 m.route(document.body, '/', {
   '/': Home,
