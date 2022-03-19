@@ -1,7 +1,7 @@
 import m from 'mithril'
 import { Synth } from 'tone'
 
-export function playNote(pitch, duration){
+export function playNote(pitch, duration) {
   const synth = new Synth().toDestination()
   synth.triggerAttackRelease(pitch, duration)
 }

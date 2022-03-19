@@ -7,7 +7,13 @@ export const TransportView = () => {
 }
 
 export const Bpm = () => [BpmDec(), m('', {}, Transport.bpm.value), BpmInc()]
-export const TransportControls = () => [Stop(), Pause(), Start(), Toggle(), CurrentTime()]
+export const TransportControls = () => [
+  Stop(),
+  Pause(),
+  Start(),
+  Toggle(),
+  CurrentTime(),
+]
 export const BpmInc = () =>
   m('input[type=button]', {
     value: '+',
@@ -39,6 +45,6 @@ export const Toggle = () =>
   m('input[type=button]', {
     value: '>/||',
     onclick: () => Transport.toggle(),
-})
+  })
 
 export const CurrentTime = () => m('', {}, Transport.seconds)
