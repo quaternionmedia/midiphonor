@@ -1,5 +1,7 @@
 import m from 'mithril'
+import {} from './schedule'
 import { Transport } from 'tone'
+
 export const TransportView = () => {
   return {
     view: vnode => ['q = ', m('span', {}, Transport.bpm.value)],
