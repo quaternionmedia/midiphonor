@@ -1,13 +1,28 @@
 import m from 'mithril'
-import { Transport } from 'tone'
-export const TransportView = () => {
-  return {
-    view: vnode => ['q = ', m('span', {}, Transport.bpm.value)],
-  }
+import { Transport, Draw } from 'tone'
+import { stream, map } from 'flyd'
+
+type Stream = typeof stream
+
+const bpm = stream(Transport.bpm.value)
+const t = stream(0)
+
+export const Bpm = () => [BpmDec(), m(Observable(bpm)), BpmInc()]
+
+Transport.scheduleRepeat(time => {
+  Draw.schedule(() => {
+    console.log('drawing', time)
+    time = Number(time.toFixed(2))
+    t(time)
+    bpm(Transport.bpm.value)
+  }, time)
+  console.log('transport time', time)
+}, '.02')
+
+export const TransportControls = {
+  view: () => m('', {}, [Stop(), Pause(), Start(), m(Observable(t))]),
 }
 
-export const Bpm = () => [BpmDec(), m('', {}, Transport.bpm.value), BpmInc()]
-export const TransportControls = () => [Stop(), Pause(), Start(), CurrentTime()]
 export const BpmInc = () =>
   m('input[type=button]', {
     value: '+',
@@ -35,4 +50,13 @@ export const Pause = () =>
     value: '||',
     onclick: () => Transport.pause(),
   })
-export const CurrentTime = () => m('', {}, Transport.seconds)
+export const Observable = (s: Stream) => {
+  return {
+    oncreate: vnode => {
+      map(value => {
+        m.render(vnode.dom, value)
+      }, s)
+    },
+    view: () => m('', {}, s()),
+  }
+}

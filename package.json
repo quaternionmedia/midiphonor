@@ -28,6 +28,7 @@
     "parcel": "^2.3.2"
   },
   "dependencies": {
+    "flyd": "^0.2.8",
     "mithril": "^2.0.4",
     "tone": "^14.7.77"
   }
