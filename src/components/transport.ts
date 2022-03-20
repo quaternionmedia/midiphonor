@@ -18,8 +18,6 @@ Transport.scheduleRepeat(time => {
   }, time)
 }, '.02')
 
-}
-
 export const Start = m('input[type=button]', {
   value: '>',
   onclick: () => {
