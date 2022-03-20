@@ -10,11 +10,11 @@ export const SynthStyle = `.dark-blue.bg-light-blue.outline.flex${ViewportGlobal
 export const SynthContents = [
   m(SynthStyle, 'Synth'),
   m(
-    `div#piano.green.bg-dark-green.fl.w-third.pa2${ViewportGlobals}`,
+    `div#piano.green.bg-dark-green.fl.w-third.pa4${ViewportGlobals}`,
     BrowserPiano()
   ),
   m(
-    `div#sequencer.green.bg-dark-green.w-third.pa2${ViewportGlobals}`,
+    `div#sequencer.green.bg-dark-green.w-third.pa6${ViewportGlobals}`,
     BrowserSequencer()
   ),
   //   m(`div#sequencerToggle.bg-orange`, ToggleSequencer()),

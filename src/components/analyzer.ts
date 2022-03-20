@@ -1,10 +1,12 @@
 import m from 'mithril'
 
 import { BrowserOscilloscope } from './oscillopscope'
+import { BrowserMeter } from './meter'
 
 export const AnalyzerStyle = '.bg-purple.flex'
 export const AnalyzerContents = [
-  m('div#oscilloscope.fl.w-third', BrowserOscilloscope()),
+  m('#oscilloscope.fl.w-third', BrowserOscilloscope()),
+  m('#meter.fl.w-third', BrowserMeter()),
 ]
 
 export const DefaultAnalyzerView = () => {

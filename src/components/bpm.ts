@@ -7,27 +7,13 @@ export const BpmButtonStyle =
 
 export const BpmStyle = 'light-gray.bg-dark-gray.br4.left-1'
 
-// export const BpmInc = () =>
-//   m(BpmButtonStyle, {
-//     value: '+',
-//     onclick: () => {
-//       Transport.bpm.rampTo(Transport.bpm.value + 10, 1),
-//         console.log(Transport.bpm.value)
-//     },
-//   })
-// export const BpmDec = () =>
-//   m(BpmButtonStyle, {
-//     value: '-',
-//     onclick: () => Transport.bpm.rampTo(Transport.bpm.value - 10, 1),
-//   })
-
 export const BpmDial = () =>
   m('input[type=button].h2.f5', {
     value: `bpm dial`,
     onclick: () => {
       var bpmdial = new Dial('#bpmdial', {
         size: [50, 50],
-        interaction: 'radial', // "radial", "vertical", or "horizontal"
+        interaction: 'vertical', // "radial", "vertical", or "horizontal"
         mode: 'relative', // "absolute" or "relative"
         min: 30,
         max: 300,
