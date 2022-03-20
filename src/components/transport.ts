@@ -1,6 +1,7 @@
 import m from 'mithril'
 import { Transport, TransportTime, Draw } from 'tone'
-import { stream, map } from 'flyd'
+import { stream } from 'flyd'
+import { Observable } from './components'
 
 type Stream = typeof stream
 
@@ -20,7 +21,7 @@ Transport.scheduleRepeat(time => {
 }, '.02')
 
 export const TransportControls = {
-  view: () => m('', {}, [Stop(), Pause(), Start(), m(Observable(t))]),
+  view: () => [Stop(), Pause(), Start(), m(Observable(state.time))],
 }
 
 export const BpmInc = () =>
@@ -50,13 +51,3 @@ export const Pause = () =>
     value: '||',
     onclick: () => Transport.pause(),
   })
-export const Observable = (s: Stream) => {
-  return {
-    oncreate: vnode => {
-      map(value => {
-        m.render(vnode.dom, value)
-      }, s)
-    },
-    view: () => m('', {}, s()),
-  }
-}
