@@ -1,52 +1,27 @@
 import m from 'mithril'
-import {} from './schedule'
 import { Transport } from 'tone'
+import { TransportControls } from './transportControls'
+import { ViewportGlobals } from './viewport'
+import { ComponentGlobals } from './component'
+import { Bpm, BpmDial } from './bpm'
+
+export const TransportViewStyle = `.ma1${ViewportGlobals}`
+export const TransportStyle = `.white.bg-black.br4.pa5.pv4.tc${ComponentGlobals}`
+
+export const TransportViewContents = [
+  m(TransportViewStyle, `transport view - ${Transport}`),
+  m(TransportViewStyle, m(Bpm)),
+  m('div#bpmdial.h2.w2.bg-purple', BpmDial()),
+]
 
 export const TransportView = () => {
   return {
-    view: vnode => ['q = ', m('span', {}, Transport.bpm.value)],
+    view: vnode => m(TransportViewStyle, TransportViewContents),
   }
 }
 
-export const Bpm = () => [BpmDec(), m('', {}, Transport.bpm.value), BpmInc()]
-export const TransportControls = () => [
-  Stop(),
-  Pause(),
-  Start(),
-  Toggle(),
-  CurrentTime(),
-]
-export const BpmInc = () =>
-  m('input[type=button]', {
-    value: '+',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value + 10, 1),
-  })
-export const BpmDec = () =>
-  m('input[type=button]', {
-    value: '-',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value - 10, 1),
-  })
-export const Start = () =>
-  m('input[type=button]', {
-    value: '>',
-    onclick: () => {
-      Transport.start()
-    },
-  })
-export const Stop = () =>
-  m('input[type=button]', {
-    value: '■',
-    onclick: () => Transport.stop(),
-  })
-export const Pause = () =>
-  m('input[type=button]', {
-    value: '||',
-    onclick: () => Transport.pause(),
-  })
-export const Toggle = () =>
-  m('input[type=button]', {
-    value: '>/||',
-    onclick: () => Transport.toggle(),
-  })
+export const GlobalTransports = [m(TransportView), ...TransportControls()]
 
-export const CurrentTime = () => m('', {}, Transport.seconds)
+export const DefaultTransportView = {
+  view: vnode => m(TransportStyle, GlobalTransports),
+}

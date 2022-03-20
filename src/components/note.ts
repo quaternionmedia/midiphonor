@@ -1,19 +1,27 @@
 import m from 'mithril'
 import { Synth } from 'tone'
+import { ComponentGlobals } from './component'
 
 export const synth = new Synth().toDestination()
 
-export function playNote(pitch, duration) {
-  synth.triggerAttackRelease(pitch, duration)
+export const NoteStyle = `input[type=button]\
+  .purple.bg-light-gray\
+  .ml1.mr1.mt4.h5\
+  .shadow-2.outline.ba\
+  .grow\
+  ${ComponentGlobals}`
+
+export function playNote(pitch, duration, dest = synth) {
+  dest.triggerAttackRelease(pitch, duration)
 }
 
-export const Note = () => {
+export const Note = (pitch, duration) => {
   return {
     view: vnode =>
-      m('input[type=button]', {
-        value: 'c3',
+      m(NoteStyle, {
+        value: pitch,
         onclick: e => {
-          playNote('c3', '8n')
+          playNote(pitch, duration)
         },
       }),
   }

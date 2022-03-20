@@ -1,5 +1,5 @@
 import m from 'mithril'
-import { Loop, Pattern } from 'tone'
+import { Loop, Transport } from 'tone'
 import { playNote } from './note'
 
 const notes = ['c2', 'g2', 'bb2', 'c3', 'e3', 'eb3']
@@ -14,11 +14,44 @@ export function randomElement(sources) {
 
 export var Loops = []
 
-export const Looper = () => {
+export const LoopOn = () => {
   return {
     view: vnode =>
       m('input[type=button]', {
-        value: 'loop',
+        value: 'transport loop on',
+        onclick: e => {
+          Transport.loop = true
+        },
+      }),
+  }
+}
+
+export const LoopOff = () => {
+  return {
+    view: vnode =>
+      m('input[type=button]', {
+        value: 'transport loop off',
+        onclick: e => {
+          Transport.loop = false
+        },
+      }),
+  }
+}
+
+export var TransportPosition = () => {
+  return {
+    view: vnode =>
+      m('input[type=button]', {
+        value: 'getTransportPosition',
+      }),
+  }
+}
+
+export const RandomizedLooperButton = () => {
+  return {
+    view: vnode =>
+      m('input[type=button]', {
+        value: 'add randomized loop',
         onclick: e => {
           var randomLoopFrequency = randomElement(loopFrequency)
           var randomLoopLength = randomElement(loopLengths)
@@ -39,6 +72,7 @@ export const Looper = () => {
             .stop(randomLoopLength)
             .set({
               playbackRate: randomPlaybackRate,
+              humanize: true,
             })
 
           Loops.push(loop)
