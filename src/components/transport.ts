@@ -5,11 +5,6 @@ import { Observable } from './components'
 
 type Stream = typeof stream
 
-const bpm = stream(Transport.bpm.value)
-const t = stream(0)
-const transportTime = TransportTime()
-
-export const Bpm = () => [BpmDec(), m(Observable(bpm)), BpmInc()]
 
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
@@ -24,16 +19,6 @@ export const TransportControls = {
   view: () => [Stop(), Pause(), Start(), m(Observable(state.time))],
 }
 
-export const BpmInc = () =>
-  m('input[type=button]', {
-    value: '+',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value + 1, 1),
-  })
-export const BpmDec = () =>
-  m('input[type=button]', {
-    value: '-',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value - 1, 1),
-  })
 export const Start = () =>
   m('input[type=button]', {
     value: '>',
