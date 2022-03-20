@@ -18,24 +18,21 @@ Transport.scheduleRepeat(time => {
   }, time)
 }, '.02')
 
-export const TransportControls = {
-  view: () => [Stop(), Pause(), Start(), m(Observable(state.time))],
 }
 
-export const Start = () =>
-  m('input[type=button]', {
-    value: '>',
-    onclick: () => {
-      Transport.start()
-    },
-  })
-export const Stop = () =>
-  m('input[type=button]', {
-    value: '■',
-    onclick: () => Transport.stop(),
-  })
-export const Pause = () =>
-  m('input[type=button]', {
-    value: '||',
-    onclick: () => Transport.pause(),
-  })
+export const Start = m('input[type=button]', {
+  value: '>',
+  onclick: () => {
+    Transport.start()
+  },
+})
+export const Stop = m('input[type=button]', {
+  value: '■',
+  onclick: () => Transport.stop(),
+})
+export const Pause = m('input[type=button]', {
+  value: '||',
+  onclick: () => Transport.pause(),
+})
+
+export const TransportControls = [Stop, Pause, Start, m(Observable(state.time))]
