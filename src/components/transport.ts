@@ -1,19 +1,19 @@
 import m from 'mithril'
-import { Transport, Draw } from 'tone'
+import { Transport, TransportTime, Draw } from 'tone'
 import { stream, map } from 'flyd'
 
 type Stream = typeof stream
 
 const bpm = stream(Transport.bpm.value)
 const t = stream(0)
+const transportTime = TransportTime()
 
 export const Bpm = () => [BpmDec(), m(Observable(bpm)), BpmInc()]
 
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
     console.log('drawing', time)
-    time = Number(time.toFixed(2))
-    t(time)
+    t(transportTime.valueOf())
     bpm(Transport.bpm.value)
   }, time)
   console.log('transport time', time)
