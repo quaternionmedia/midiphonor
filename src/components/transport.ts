@@ -1,18 +1,21 @@
 import m from 'mithril'
 import { Transport, TransportTime, Draw } from 'tone'
 import { stream } from 'flyd'
+import { TransportState } from '../types'
 import { Observable } from './components'
 
-type Stream = typeof stream
-
+export const state: TransportState = {
+  bpm: stream(120),
+  time: stream(0),
+  transportTime: TransportTime(),
+  state: stream(Transport.state),
+}
 
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
-    console.log('drawing', time)
-    t(transportTime.valueOf())
-    bpm(Transport.bpm.value)
+    state.time(state.transportTime.toBarsBeatsSixteenths())
+    state.bpm(Transport.bpm.value)
   }, time)
-  console.log('transport time', time)
 }, '.02')
 
 export const TransportControls = {
