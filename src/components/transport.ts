@@ -65,9 +65,22 @@ export const PlayPause = {
   view: () => m(''),
 }
 
+export const TwoDigit = (s: Stream<Number>) =>
+  s.map(v => String(v).padStart(2, '0'))
+
+export const OneIndex = (s: Stream<Number>) => s.map(v => v + 1)
+
+export const TransportClock = m('.clock', {}, [
+  m(Observable(TwoDigit(OneIndex(state.bars)))),
+  m('', ':'),
+  m(Observable(TwoDigit(OneIndex(state.beats)))),
+  m('', ':'),
+  m(Observable(state.sixteenths)),
+])
 
 export const TransportControls = [
   Stop,
   m(PlayPause),
   m(Observable(state.time)),
+  TransportClock,
 ]
