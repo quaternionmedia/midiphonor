@@ -1,34 +1,14 @@
-import m from 'mithril'
+import { vp } from './viewport'
+import { c } from './component'
 
 import { Transport, Draw } from 'tone'
-import { LoopOn, LoopOff, RandomizedLooperButton } from './loop'
-import { ViewportGlobals } from './viewport'
-import { ComponentGlobals } from './component'
+import { RandomizedLooperButton } from './loop'
 
-export const ScheduleViewStyle = `.yellow.bg-dark-blue${ViewportGlobals}`
+export const Style = '.white.bg-black'
+export const ViewStyle = '.bg-dark-blue'
 
-Transport.debug = true
+export const Title = c(Style, `Schedule - ${Transport}`)
 
-Transport.scheduleRepeat(time => {
-  Draw.schedule(() => {
-    console.log(time)
-  }, time)
-}, '16n')
+export const ScheduleContents = [Title.v(), RandomizedLooperButton.v()]
 
-// Transport.start()
-
-export const ScheduleViewContents = [
-  m(ScheduleViewStyle, `schedule view - ${Transport}`),
-  m(ScheduleViewStyle, m(RandomizedLooperButton)),
-  //   m('white.bg-black', m(LoopOn)),
-  //   m('white.bg-black', m(LoopOff)),
-]
-
-export const GlobalSchedules = [
-  m(ScheduleViewStyle, ScheduleViewContents),
-  m(ScheduleViewStyle, ScheduleViewContents),
-]
-
-export const DefaultScheduleView = {
-  view: vnode => m(ViewportGlobals, GlobalSchedules),
-}
+export const ScheduleView = vp(ViewStyle, ScheduleContents)

@@ -1,9 +1,25 @@
-// import m from 'mitrhil'
+import m from 'mithril'
 
 import { Transport } from 'tone'
-import { ComponentGlobals } from './component'
+import { ComponentManager } from './component'
 
-export const ViewportGlobals = '.z-1.br2.outline-m'
+export const defaultViewportStyle = '.bg-dark-gray'
 
-export const ViewportButtonStyle = `input[type=button].gray.bg-black.w2.h1${ComponentGlobals}`
-export const ViewportStyle = `.light-green.bg-gray${ViewportGlobals}`
+// export const ViewportButtonStyle = `input[type=button].gray.bg-black.w2.h1${ComponentGlobals}`
+
+export function vp(s, c) {
+  return new ViewportManager(self, s, c)
+}
+
+export class ViewportManager extends ComponentManager {
+  viewportStyle: string
+  componentManagers: []
+  constructor(vnode, style, components) {
+    super(vnode, style + defaultViewportStyle, components)
+    this.viewportStyle = style + defaultViewportStyle
+  }
+
+  v(self = this) {
+    return this.view(self)
+  }
+}

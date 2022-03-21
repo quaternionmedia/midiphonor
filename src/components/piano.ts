@@ -3,18 +3,14 @@ import m from 'mithril'
 import { Piano } from 'nexusui'
 import { playNote } from './note'
 
-export const PianoGlobalStyle = '.z-1.o-10'
-
-export const PianoStyle = '.dark-blue.bg-light-blue.outline.ba.br4'
-export const WhiteKeyStyle = '.black.bg-white'
-export const BlackKeyStyle = '.white.bg-black.ma2.center.outline'
+import { Accent, Fill, ButtonStyle, AnalyzerStyle, gx, gy } from './ui'
 
 export const BrowserPiano = () =>
   m('input[type=button].w-auto.h-auto', {
     value: 'new piano',
     onclick: () => {
       var piano = new Piano('#piano', {
-        size: [500, 125],
+        size: [500, 100],
         mode: 'button', // 'button', 'toggle', or 'impulse'
         lowNote: 30,
         highNote: 70,

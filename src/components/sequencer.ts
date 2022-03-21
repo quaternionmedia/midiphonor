@@ -24,12 +24,12 @@ export const BrowserSequencer = () =>
     value: 'new sequencer',
     onclick: () => {
       var sequencer = new Sequencer('#sequencer', {
-        size: [400, 200],
+        size: [300, 300],
         mode: 'toggle',
-        rows: 5,
-        columns: 10,
-        paddingRow: 10,
-        paddingColumn: 20,
+        rows: 4,
+        columns: 4,
+        paddingRow: 5,
+        paddingColumn: 5,
       })
       console.log(sequencer)
 

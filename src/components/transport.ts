@@ -1,27 +1,19 @@
-import m from 'mithril'
 import { Transport } from 'tone'
-import { TransportControls } from './transportControls'
-import { ViewportGlobals } from './viewport'
-import { ComponentGlobals } from './component'
-import { Bpm, BpmDial } from './bpm'
+import { tControlView } from './transportControls'
+import { vp } from './viewport'
+import { c } from './component'
+import { BpmView } from './bpm'
+import { TimeButton } from './time'
 
-export const TransportViewStyle = `.ma1${ViewportGlobals}`
-export const TransportStyle = `.white.bg-black.br4.pa5.pv4.tc${ComponentGlobals}`
+export const Style = '.white.bg-black.br2.pa2.pv2.tc'
+export const ViewStyle = '.bg-navy'
+
+export const Title = c(Style, `transport - ${Transport}`)
 
 export const TransportViewContents = [
-  m(TransportViewStyle, `transport view - ${Transport}`),
-  m(TransportViewStyle, m(Bpm)),
-  m('div#bpmdial.h2.w2.bg-purple', BpmDial()),
+  Title.v(),
+  BpmView().v(),
+  tControlView().v(),
 ]
 
-export const TransportView = () => {
-  return {
-    view: vnode => m(TransportViewStyle, TransportViewContents),
-  }
-}
-
-export const GlobalTransports = [m(TransportView), ...TransportControls()]
-
-export const DefaultTransportView = {
-  view: vnode => m(TransportStyle, GlobalTransports),
-}
+export const TransportView = vp(ViewStyle, TransportViewContents)

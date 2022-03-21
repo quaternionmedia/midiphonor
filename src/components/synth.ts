@@ -1,27 +1,19 @@
-import m from 'mithril'
-import { Synth } from 'tone'
-import { Note } from './note'
-import { ViewportGlobals } from './viewport'
+import { vp } from './viewport'
+import { c } from './component'
+
 import { BrowserPiano } from './piano'
-import { BrowserSequencer, ToggleSequencer } from './sequencer'
+import { BrowserSequencer } from './sequencer'
 
-export const SynthStyle = `.dark-blue.bg-light-blue.outline${ViewportGlobals}`
+export const Style = '.dark-blue.bg-light-blue'
+export const ViewStyle = '.gold'
 
-export const SynthContents = [
-  m(SynthStyle, 'Synth'),
-  m(
-    `div#piano.green.bg-dark-green.w-third.ma4${ViewportGlobals}`,
-    BrowserPiano()
-  ),
-  m(
-    `div#sequencer.green.bg-dark-green.w-third.ma5${ViewportGlobals}`,
-    BrowserSequencer()
-  ),
-  //   m(`div#sequencerToggle.bg-orange`, ToggleSequencer()),
-]
+export const Title = c(Style, 'Synth')
+export const Piano = c('#piano.green.bg-dark-green.w-third.mb4', BrowserPiano())
+export const Sequencer = c(
+  '#sequencer.green.bg-dark-green.w-third.mb5',
+  BrowserSequencer()
+)
 
-export const DefaultSynthView = () => {
-  return {
-    view: vnode => m(SynthStyle, SynthContents),
-  }
-}
+export const SynthContents = [Title.v(), Piano.v(), Sequencer.v()]
+
+export const SynthView = vp(ViewStyle, SynthContents)

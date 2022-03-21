@@ -1,43 +1,43 @@
 import m from 'mithril'
+import { c } from './component'
+import { vp } from './viewport'
 import { Transport } from 'tone'
 import { Dial, Number } from 'nexusui'
+import { Accent, Fill } from './ui'
 
-export const BpmButtonStyle =
-  'input[type=button].dark-gray.bg-light-gray.br1.tc.ba.bw1.shadow-1.ma3.ph3'
+export const Style = '#bpm.navy.bg-silver.outline'
+export const ViewStyle = '#bpm'
 
-export const BpmStyle = 'light-gray.bg-dark-gray.br4.left-1'
+export const Title = c(`${Style}.bg-dark-pink`, 'bpm')
 
-export const BpmDial = () =>
-  m('input[type=button].h2.f5', {
-    value: `bpm dial`,
-    onclick: () => {
-      var bpmdial = new Dial('#bpmdial', {
-        size: [50, 50],
-        interaction: 'vertical', // "radial", "vertical", or "horizontal"
-        mode: 'relative', // "absolute" or "relative"
-        min: 30,
-        max: 300,
-        step: 1,
-        value: 80,
-      })
-      bpmdial.colorize('accent', '#ff0')
-      bpmdial.colorize('fill', '#333')
-      console.log(bpmdial)
-      var bpm = new Number('#bpmdial')
+export const BpmDialButton = c(`input[type=Button]${Style}`, {
+  value: 'bpm',
+  onclick: () => {
+    var bpmdial = new Dial('#bpm', {
+      size: [50, 50],
+      interaction: 'vertical', // "radial", "vertical", or "horizontal"
+      mode: 'relative', // "absolute" or "relative"
+      min: 30,
+      max: 300,
+      step: 1,
+      value: 80,
+    })
+    bpmdial.colorize('accent', Accent)
+    bpmdial.colorize('fill', Fill)
+    console.log(bpmdial)
+    var bpm = new Number('#bpm')
 
-      bpm.link(bpmdial)
+    bpm.link(bpmdial)
 
-      bpmdial.on('change', function (v) {
-        console.log(v)
-        Transport.bpm.value = v
-      })
-    },
-  })
+    bpmdial.on('change', function (v) {
+      console.log(v)
+      Transport.bpm.value = v
+    })
+  },
+})
 
-export const BpmContents = []
+export const BpmContents = [BpmDialButton.v()]
 
-export const Bpm = () => {
-  return {
-    view: vnode => m(BpmStyle, BpmContents),
-  }
+export const BpmView = () => {
+  return vp(ViewStyle, BpmContents)
 }

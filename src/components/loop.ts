@@ -1,4 +1,5 @@
-import m from 'mithril'
+// import m from 'mithril'
+import { c } from './component'
 import { Loop, Transport } from 'tone'
 import { playNote } from './note'
 
@@ -14,72 +15,38 @@ export function randomElement(sources) {
 
 export var Loops = []
 
-export const LoopOn = () => {
-  return {
-    view: vnode =>
-      m('input[type=button]', {
-        value: 'transport loop on',
-        onclick: e => {
-          Transport.loop = true
-        },
-      }),
-  }
-}
+export var TransportPosition = c('input[type=button]', {
+  value: 'getTransportPosition',
+})
 
-export const LoopOff = () => {
-  return {
-    view: vnode =>
-      m('input[type=button]', {
-        value: 'transport loop off',
-        onclick: e => {
-          Transport.loop = false
-        },
-      }),
-  }
-}
+export const RandomizedLooperButton = c('input[type=button]', {
+  value: 'add randomized loop',
+  onclick: e => {
+    var randomLoopFrequency = randomElement(loopFrequency)
+    var randomLoopLength = randomElement(loopLengths)
+    var randomPlaybackRate = randomElement(playbackRates)
 
-export var TransportPosition = () => {
-  return {
-    view: vnode =>
-      m('input[type=button]', {
-        value: 'getTransportPosition',
-      }),
-  }
-}
+    const loop = new Loop(time => {
+      const randomNote = randomElement(notes)
+      const randomDuration = randomElement(noteDurations)
 
-export const RandomizedLooperButton = () => {
-  return {
-    view: vnode =>
-      m('input[type=button]', {
-        value: 'add randomized loop',
-        onclick: e => {
-          var randomLoopFrequency = randomElement(loopFrequency)
-          var randomLoopLength = randomElement(loopLengths)
-          var randomPlaybackRate = randomElement(playbackRates)
+      playNote(randomNote, randomDuration)
+      console.log(
+        `time: ${time} note: ${randomNote} duration: ${randomDuration} loop freq: ${randomLoopFrequency} loop len: ${randomLoopLength} playback rate: ${randomPlaybackRate} loop length: ${
+          randomLoopLength * randomPlaybackRate
+        }`
+      )
+    }, randomLoopFrequency)
+      .start(0)
+      .stop(randomLoopLength)
+      .set({
+        playbackRate: randomPlaybackRate,
+        humanize: true,
+      })
 
-          const loop = new Loop(time => {
-            const randomNote = randomElement(notes)
-            const randomDuration = randomElement(noteDurations)
-
-            playNote(randomNote, randomDuration)
-            console.log(
-              `time: ${time} note: ${randomNote} duration: ${randomDuration} loop freq: ${randomLoopFrequency} loop len: ${randomLoopLength} playback rate: ${randomPlaybackRate} loop length: ${
-                randomLoopLength * randomPlaybackRate
-              }`
-            )
-          }, randomLoopFrequency)
-            .start(0)
-            .stop(randomLoopLength)
-            .set({
-              playbackRate: randomPlaybackRate,
-              humanize: true,
-            })
-
-          Loops.push(loop)
-          for (let l of Loops) {
-            console.log(l.name)
-          }
-        },
-      }),
-  }
-}
+    Loops.push(loop)
+    for (let l of Loops) {
+      console.log(l.name)
+    }
+  },
+})

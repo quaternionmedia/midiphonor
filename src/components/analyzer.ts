@@ -1,18 +1,19 @@
-import m from 'mithril'
+import { vp } from './viewport'
 
-import { BrowserOscilloscope } from './oscillopscope'
-import { BrowserMeter } from './meter'
-import { BrowserSpectrogram } from './spectrogram'
+import { OscilloscopeView } from './oscillopscope'
+import { MeterView } from './meter'
+import { SpectrogramView } from './spectrogram'
+import { EnvelopeView } from './envelope'
+import { MultisliderView } from './multislider'
 
-export const AnalyzerStyle = '.bg-purple.flex'
+export const Style = '.gold.bg-purple'
+
 export const AnalyzerContents = [
-  m('#oscilloscope.w-third', BrowserOscilloscope()),
-  m('#meter.w-third', BrowserMeter()),
-  m('#spectrogram.w-third', BrowserSpectrogram()),
+  OscilloscopeView.v(),
+  MeterView.v(),
+  SpectrogramView.v(),
+  EnvelopeView.v(),
+  MultisliderView.v(),
 ]
 
-export const DefaultAnalyzerView = () => {
-  return {
-    view: vnode => m(AnalyzerStyle, AnalyzerContents),
-  }
-}
+export const AnalyzerView = vp(Style, AnalyzerContents)
