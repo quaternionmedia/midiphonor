@@ -7,6 +7,9 @@ import { Observable } from './components'
 export const state: TransportState = {
   bpm: stream(120),
   time: stream(0),
+  bars: stream(0),
+  beats: stream(0),
+  sixteenths: stream(0),
   transportTime: TransportTime(),
   state: stream(Transport.state),
 }
@@ -14,6 +17,10 @@ export const state: TransportState = {
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
     state.time(state.transportTime.toBarsBeatsSixteenths())
+    let bbs = state.time().split(':')
+    state.bars(Number(bbs[0]))
+    state.beats(Number(bbs[1]))
+    state.sixteenths(Number(bbs[2]).toFixed(2))
     state.bpm(Transport.bpm.value)
   }, time)
 }, '.02')
