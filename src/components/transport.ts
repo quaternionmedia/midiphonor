@@ -18,6 +18,22 @@ Transport.scheduleRepeat(time => {
   }, time)
 }, '.02')
 
+function TransportStarted(e) {
+  state.state('started')
+  console.log(state.state(), e)
+}
+function TransportStopped(e) {
+  state.state('stopped')
+  console.log(state.state(), e)
+}
+function TransportPause(e) {
+  state.state('paused')
+  console.log(state.state(), e)
+}
+Transport.on('start', TransportStarted)
+Transport.on('stop', TransportStopped)
+Transport.on('pause', TransportPause)
+
 export const Start = m('input[type=button]', {
   value: '>',
   onclick: () => {
