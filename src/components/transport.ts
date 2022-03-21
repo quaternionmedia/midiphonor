@@ -1,38 +1,36 @@
 import m from 'mithril'
-import { Transport } from 'tone'
-export const TransportView = () => {
-  return {
-    view: vnode => ['q = ', m('span', {}, Transport.bpm.value)],
-  }
+import { Transport, TransportTime, Draw } from 'tone'
+import { stream } from 'flyd'
+import { TransportState } from '../types'
+import { Observable } from './components'
+
+export const state: TransportState = {
+  bpm: stream(120),
+  time: stream(0),
+  transportTime: TransportTime(),
+  state: stream(Transport.state),
 }
 
-export const Bpm = () => [BpmDec(), m('', {}, Transport.bpm.value), BpmInc()]
-export const TransportControls = () => [Stop(), Pause(), Start(), CurrentTime()]
-export const BpmInc = () =>
-  m('input[type=button]', {
-    value: '+',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value + 1, 1),
-  })
-export const BpmDec = () =>
-  m('input[type=button]', {
-    value: '-',
-    onclick: () => Transport.bpm.rampTo(Transport.bpm.value - 1, 1),
-  })
-export const Start = () =>
-  m('input[type=button]', {
-    value: '>',
-    onclick: () => {
-      Transport.start()
-    },
-  })
-export const Stop = () =>
-  m('input[type=button]', {
-    value: '■',
-    onclick: () => Transport.stop(),
-  })
-export const Pause = () =>
-  m('input[type=button]', {
-    value: '||',
-    onclick: () => Transport.pause(),
-  })
-export const CurrentTime = () => m('', {}, Transport.seconds)
+Transport.scheduleRepeat(time => {
+  Draw.schedule(() => {
+    state.time(state.transportTime.toBarsBeatsSixteenths())
+    state.bpm(Transport.bpm.value)
+  }, time)
+}, '.02')
+
+export const Start = m('input[type=button]', {
+  value: '>',
+  onclick: () => {
+    Transport.start()
+  },
+})
+export const Stop = m('input[type=button]', {
+  value: '■',
+  onclick: () => Transport.stop(),
+})
+export const Pause = m('input[type=button]', {
+  value: '||',
+  onclick: () => Transport.pause(),
+})
+
+export const TransportControls = [Stop, Pause, Start, m(Observable(state.time))]
