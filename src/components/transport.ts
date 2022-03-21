@@ -55,5 +55,19 @@ export const Pause = m('input[type=button]', {
   value: '||',
   onclick: () => Transport.pause(),
 })
+export const PlayPause = {
+  oncreate: vnode => {
+    state.state.map(s => {
+      console.log('changing play button', s, vnode)
+      m.render(vnode.dom, s == 'started' ? Pause : Start)
+    })
+  },
+  view: () => m(''),
+}
 
-export const TransportControls = [Stop, Pause, Start, m(Observable(state.time))]
+
+export const TransportControls = [
+  Stop,
+  m(PlayPause),
+  m(Observable(state.time)),
+]
