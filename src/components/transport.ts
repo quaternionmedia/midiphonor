@@ -4,6 +4,8 @@ import { stream } from 'flyd'
 import { TransportState } from '../types'
 import { Observable } from './components'
 
+import './transport.css'
+
 export const state: TransportState = {
   bpm: stream(120),
   time: stream(0),

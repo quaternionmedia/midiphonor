@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'DSEG7';
+  src: url('../../node_modules/dseg/fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf');
+}
+
+.clock {
+  display: inline-flex;
+  border: 3px aqua;
+  border-style: outset;
+  color: #0f0;
+  background: #222;
+  padding: 1rem;
+  font-family: 'DSEG7';
+}
+
+.clock div {
+  padding-left: 0.5rem;
+}
