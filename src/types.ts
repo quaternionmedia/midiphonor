@@ -1,11 +1,15 @@
 import { stream } from 'flyd'
-import { TransportTime } from 'tone'
+import { TransportTimeClass } from 'tone'
 
-export type Stream = typeof stream
+const s = stream()
+export type Stream = typeof s
 
 export interface TransportState {
   bpm: Stream<number>
   state: Stream<TransportModes>
   time: Stream<string>
-  transportTime: typeof TransportTime
+  bars: Stream<number>
+  beats: Stream<number>
+  sixteenths: Stream<number>
+  transportTime: typeof TransportTimeClass
 }
