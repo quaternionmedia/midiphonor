@@ -11,7 +11,7 @@ Transport.scheduleRepeat(time => {
     let bbs = state.time().split(':')
     state.bars(Number(bbs[0]))
     state.beats(Number(bbs[1]))
-    state.sixteenths(Number(bbs[2]).toFixed(2))
+    state.sixteenths(Number(bbs[2]))
     state.bpm(Transport.bpm.value)
   }, time)
 }, '.02')
