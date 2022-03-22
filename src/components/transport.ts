@@ -1,10 +1,8 @@
 import m from 'mithril'
-import { Transport, TransportTime, Draw } from 'tone'
-import { stream } from 'flyd'
-import { TransportState } from '../types'
-import { Observable } from './components'
-
+import { Transport, Draw } from 'tone'
+import { TransportClock } from './clock'
 import './transport.css'
+import { Observable } from './components'
 import { state } from '../state'
 
 Transport.scheduleRepeat(time => {
@@ -57,20 +55,6 @@ export const PlayPause = {
   },
   view: () => m(''),
 }
-
-export const TwoDigit = (s: Stream<Number>) =>
-  s.map(v => String(v).padStart(2, '0'))
-
-export const OneIndex = (s: Stream<Number>) => s.map(v => v + 1)
-
-export const TransportClock = m('.clock', {}, [
-  m(Observable(TwoDigit(OneIndex(state.bars)))),
-  m('', ':'),
-  m(Observable(TwoDigit(OneIndex(state.beats)))),
-  m('', ':'),
-  m(Observable(state.sixteenths)),
-])
-
 export const TransportControls = [
   Stop,
   m(PlayPause),
