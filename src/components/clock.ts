@@ -8,11 +8,12 @@ import { OneIndex, TwoDigit, TwoDecimal } from '../utils'
 export const Bars = m(Observable(TwoDigit(OneIndex(state.bars))))
 export const Beats = m(Observable(TwoDigit(OneIndex(state.beats))))
 export const Sixteenths = m(Observable(state.sixteenths))
+export const Seperator = m('', ':')
 
 export const TransportClock = m('.clock', {}, [
   Bars,
-  m('', ':'),
+  Seperator,
   Beats,
-  m('', ':'),
+  Seperator,
   Sixteenths,
 ])
