@@ -5,16 +5,7 @@ import { TransportState } from '../types'
 import { Observable } from './components'
 
 import './transport.css'
-
-export const state: TransportState = {
-  bpm: stream(120),
-  time: stream(0),
-  bars: stream(0),
-  beats: stream(0),
-  sixteenths: stream(0),
-  transportTime: TransportTime(),
-  state: stream(Transport.state),
-}
+import { state } from '../state'
 
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
