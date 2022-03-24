@@ -13,6 +13,18 @@
   font-family: 'DSEG7';
 }
 
-.clock div {
+.clock * {
   padding-left: 0.5rem;
 }
+
+.container {
+  display: inline-flex;
+  border: 3px outset #555;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  align-items: center;
+}
+.container * {
+  box-sizing: border-box;
+}
+
