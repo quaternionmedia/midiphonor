@@ -7,13 +7,16 @@ import { state } from '../state'
 
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
+    // console.log('drawing', time, state)
     state.time(state.transportTime.toBarsBeatsSixteenths())
     let bbs = state.time().split(':')
     state.bars(Number(bbs[0]))
     state.beats(Number(bbs[1]))
     state.sixteenths(Number(bbs[2]))
     state.bpm(Transport.bpm.value)
+    // state.state(Transport.state)
   }, time)
+  // console.log('transport time', time)
 }, '.02')
 
 function TransportStarted(e) {
@@ -32,32 +35,57 @@ Transport.on('start', TransportStarted)
 Transport.on('stop', TransportStopped)
 Transport.on('pause', TransportPause)
 
-export const Start = m('input[type=button]', {
-  value: '>',
-  onclick: () => {
-    Transport.start()
-  },
-})
-export const Stop = m('input[type=button]', {
-  value: '■',
-  onclick: () => Transport.stop(),
-})
-export const Pause = m('input[type=button]', {
-  value: '||',
-  onclick: () => Transport.pause(),
-})
+export const Button = {
+  view: vnode => m('.button', vnode.attrs, vnode.children),
+}
+
+export const Start = {
+  view: vnode =>
+    m(
+      Button,
+      {
+        onclick: () => {
+          Transport.start()
+        },
+        ...vnode.attrs,
+      },
+      '>'
+    ),
+}
+
+export const Stop = {
+  view: vnode =>
+    m(
+      Button,
+      {
+        onclick: () => Transport.stop(),
+      },
+      '■'
+    ),
+}
+export const Pause = {
+  view: vnode =>
+    m(
+      Button,
+      {
+        onclick: () => Transport.pause(),
+      },
+      '||'
+    ),
+}
+
 export const PlayPause = {
   oncreate: vnode => {
     state.state.map(s => {
       console.log('changing play button', s, vnode)
-      m.render(vnode.dom, s == 'started' ? Pause : Start)
+      m.render(vnode.dom, s == 'started' ? m(Pause) : m(Start))
     })
   },
-  view: () => m(''),
+  view: vnode => m('', vnode.attrs),
 }
-export const TransportControls = [
-  Stop,
-  m(PlayPause),
-  m(Observable(state.time)),
+
+export const TransportControls = m('.container', [
   TransportClock,
-]
+  m(Stop),
+  m(PlayPause),
+])
