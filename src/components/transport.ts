@@ -2,7 +2,7 @@ import m from 'mithril'
 import { Transport, Draw } from 'tone'
 import { TransportClock } from './clock'
 import './transport.css'
-import { Observable } from './components'
+import { Observable, Container } from './components'
 import { state } from '../state'
 import { Button } from 'construct-ui'
 
@@ -74,8 +74,7 @@ export const PlayPause = state => ({
   view: vnode => m('', vnode.attrs),
 })
 
-
-export const TransportControls = m('.container', [
+export const TransportControls = m(Container, {}, [
   TransportClock,
   m(Stop),
   m(PlayPause(state)),
