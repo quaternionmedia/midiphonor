@@ -74,7 +74,7 @@ export const Pause = {
     ),
 }
 
-export const PlayPause = {
+export const PlayPause = state => ({
   oncreate: vnode => {
     state.state.map(s => {
       console.log('changing play button', s, vnode)
@@ -82,10 +82,11 @@ export const PlayPause = {
     })
   },
   view: vnode => m('', vnode.attrs),
-}
+})
+
 
 export const TransportControls = m('.container', [
   TransportClock,
   m(Stop),
-  m(PlayPause),
+  m(PlayPause(state)),
 ])
