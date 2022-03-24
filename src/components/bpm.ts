@@ -1,7 +1,7 @@
 import m from 'mithril'
 import { Transport } from 'tone'
-import { state } from './transport'
-import { Observable } from './components'
+import { state } from '../state'
+import { Observable, Container } from './components'
 
 export const BpmInc = m('input[type=button]', {
   value: '+',
@@ -18,4 +18,4 @@ export const BpmDec = m('input[type=button]', {
   },
 })
 
-export const Bpm = [BpmDec, m(Observable(state.bpm)), BpmInc]
+export const Bpm = m(Container, {}, [BpmDec, m(Observable(state.bpm)), BpmInc])
