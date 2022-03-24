@@ -18,4 +18,4 @@ export const BpmDec = m('input[type=button]', {
   },
 })
 
-export const Bpm = [BpmDec, m(Observable(state.bpm)), BpmInc]
+export const Bpm = m('.container', [BpmDec, m(Observable(state.bpm)), BpmInc])
