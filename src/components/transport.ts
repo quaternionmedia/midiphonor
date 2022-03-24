@@ -4,6 +4,7 @@ import { TransportClock } from './clock'
 import './transport.css'
 import { Observable } from './components'
 import { state } from '../state'
+import { Button } from 'construct-ui'
 
 Transport.scheduleRepeat(time => {
   Draw.schedule(() => {
@@ -35,43 +36,32 @@ Transport.on('start', TransportStarted)
 Transport.on('stop', TransportStopped)
 Transport.on('pause', TransportPause)
 
-export const Button = {
-  view: vnode => m('.button', vnode.attrs, vnode.children),
-}
-
 export const Start = {
   view: vnode =>
-    m(
-      Button,
-      {
-        onclick: () => {
-          Transport.start()
-        },
-        ...vnode.attrs,
+    m(Button, {
+      label: '>',
+      onclick: () => {
+        Transport.start()
       },
-      '>'
-    ),
+      ...vnode.attrs,
+    }),
 }
 
 export const Stop = {
   view: vnode =>
-    m(
-      Button,
-      {
-        onclick: () => Transport.stop(),
-      },
-      '■'
-    ),
+    m(Button, {
+      label: '■',
+      onclick: () => Transport.stop(),
+      ...vnode.attrs,
+    }),
 }
 export const Pause = {
   view: vnode =>
-    m(
-      Button,
-      {
-        onclick: () => Transport.pause(),
-      },
-      '| |'
-    ),
+    m(Button, {
+      label: '| |',
+      onclick: () => Transport.pause(),
+      ...vnode.attrs,
+    }),
 }
 
 export const PlayPause = state => ({
