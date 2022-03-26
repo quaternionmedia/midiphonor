@@ -20,7 +20,29 @@ export const BpmDec = m(Button, {
   },
 })
 
+export const BpmSlider = bpm =>
+  m('input[type=range]', {
+    min: 1,
+    max: 200,
+    value: Transport.bpm.value,
+    oninput: e => {
+      let newBpm = Number(e.target.value)
+      console.log('bpm range', e, newBpm)
+      Transport.set({ bpm: newBpm })
+    },
+    oncreate: ({ dom }) => {
+      bpm.map(v => {
+        dom.value = v
+      })
+    },
+  })
+
 export const BpmValue = (bpm: Stream<Number>) => m(Observable(NDecimal(bpm, 1)))
 
 export const Bpm = ({ bpm }) =>
-  m(ControlGroup, { class: 'container' }, [BpmDec, BpmValue(bpm), BpmInc])
+  m(ControlGroup, { class: 'container' }, [
+    BpmDec,
+    BpmValue(bpm),
+    BpmInc,
+    BpmSlider(bpm),
+  ])
