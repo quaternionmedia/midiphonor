@@ -19,9 +19,7 @@ export const BpmDec = m(Button, {
   },
 })
 
+export const BpmValue = state => m(Observable(NDecimal(state.bpm, 1)))
+
 export const Bpm = state =>
-  m(ControlGroup, { class: 'container' }, [
-    BpmDec,
-    m(Observable(NDecimal(state.bpm, 1))),
-    BpmInc,
-  ])
+  m(ControlGroup, { class: 'container' }, [BpmDec, BpmValue(state), BpmInc])
