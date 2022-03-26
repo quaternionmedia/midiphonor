@@ -5,15 +5,15 @@ import { Observable } from './components'
 import { NDecimal } from '../utils'
 import { Button, ControlGroup } from 'construct-ui'
 
-export const BpmInc = m('input[type=button]', {
-  value: '+',
+export const BpmInc = m(Button, {
+  label: '+',
   onclick: () => {
     let bpm = Transport.bpm.value + 10
     Transport.bpm.rampTo(bpm, 1)
   },
 })
-export const BpmDec = m('input[type=button]', {
-  value: '-',
+export const BpmDec = m(Button, {
+  label: '-',
   onclick: () => {
     let bpm = Transport.bpm.value - 10
     Transport.bpm.rampTo(bpm, 1)
