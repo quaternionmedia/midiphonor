@@ -1,7 +1,9 @@
 import m from 'mithril'
 import { Transport } from 'tone'
 import { state } from '../state'
-import { Observable, Container } from './components'
+import { Observable } from './components'
+import { NDecimal } from '../utils'
+import { Button, ControlGroup } from 'construct-ui'
 
 export const BpmInc = m('input[type=button]', {
   value: '+',
@@ -18,4 +20,8 @@ export const BpmDec = m('input[type=button]', {
   },
 })
 
-export const Bpm = m(Container, {}, [BpmDec, m(Observable(state.bpm)), BpmInc])
+export const Bpm = m(ControlGroup, { class: 'container' }, [
+  BpmDec,
+  m(Observable(NDecimal(state.bpm, 1))),
+  BpmInc,
+])

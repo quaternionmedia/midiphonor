@@ -1,7 +1,7 @@
 import m from 'mithril'
 import { Observable } from './components'
 import { state } from '../state'
-import { OneIndex, TwoDigit, TwoDecimal } from '../utils'
+import { OneIndex, TwoDecimal } from '../utils'
 
 export const Bars = m(Observable(OneIndex(state.bars)))
 export const Beats = m(Observable(OneIndex(state.beats)))
