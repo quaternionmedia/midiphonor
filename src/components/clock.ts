@@ -5,7 +5,7 @@ import { OneIndex, TwoDecimal } from '../utils'
 
 export const Bars = m(Observable(OneIndex(state.bars)))
 export const Beats = m(Observable(OneIndex(state.beats)))
-export const Sixteenths = m(Observable(TwoDecimal(state.sixteenths)))
+export const Sixteenths = m(Observable(TwoDecimal(OneIndex(state.sixteenths))))
 
 export const Seperator = m('', ':')
 
