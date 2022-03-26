@@ -3,6 +3,7 @@ import { Transport } from 'tone'
 import { Observable } from './components'
 import { NDecimal } from '../utils'
 import { Button, ControlGroup } from 'construct-ui'
+import { Stream } from '../types'
 
 export const BpmInc = m(Button, {
   label: '+',
@@ -19,7 +20,7 @@ export const BpmDec = m(Button, {
   },
 })
 
-export const BpmValue = state => m(Observable(NDecimal(state.bpm, 1)))
+export const BpmValue = (bpm: Stream<Number>) => m(Observable(NDecimal(bpm, 1)))
 
-export const Bpm = state =>
-  m(ControlGroup, { class: 'container' }, [BpmDec, BpmValue(state), BpmInc])
+export const Bpm = ({ bpm }) =>
+  m(ControlGroup, { class: 'container' }, [BpmDec, BpmValue(bpm), BpmInc])
