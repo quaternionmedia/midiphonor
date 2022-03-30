@@ -75,7 +75,7 @@ export const PlayPause = state => ({
 })
 
 export const TransportControls = m(Container, {}, [
-  TransportClock,
+  TransportClock(state),
   m(Stop),
   m(PlayPause(state)),
 ])
