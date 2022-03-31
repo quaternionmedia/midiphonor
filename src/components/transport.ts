@@ -3,7 +3,6 @@ import { Transport, Draw } from 'tone'
 import { TransportClock } from './clock'
 import './transport.css'
 import { Observable, Container } from './components'
-import { state } from '../state'
 import { Button } from 'construct-ui'
 
 export const Start = {
@@ -34,18 +33,22 @@ export const Pause = {
     }),
 }
 
-export const PlayPause = state => ({
-  oncreate: vnode => {
-    state.state.map(s => {
-      console.log('changing play button', s, vnode)
-      m.render(vnode.dom, s == 'started' ? m(Pause) : m(Start))
+export const PlayPause = {
+  oncreate: ({ dom, attrs: { state } }) => {
+    console.log('init PlayPause', state)
+    state().state.map(s => {
+      m.render(dom, s == 'started' ? m(Pause) : m(Start))
     })
   },
-  view: vnode => m('', vnode.attrs),
-})
+  view: ({ attrs: { state } }) =>
+    state.state == 'started' ? m(Pause) : m(Start),
+}
 
-export const TransportControls = m(Container, {}, [
-  TransportClock(state),
-  m(Stop),
-  m(PlayPause(state)),
-])
+export const TransportControls = {
+  view: ({ attrs: { state } }) =>
+    m(Container, {}, [
+      m(TransportClock, { state }),
+      m(Stop),
+      m(PlayPause, { state }),
+    ]),
+}
