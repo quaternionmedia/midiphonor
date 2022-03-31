@@ -1,19 +1,17 @@
 import m from 'mithril'
-import { Observable } from './components'
+import { o } from './components'
 import { OneIndex, TwoDecimal } from '../utils'
-
-export const Bars = state => m(Observable(OneIndex(state.bars)))
-export const Beats = state => m(Observable(OneIndex(state.beats)))
-export const Sixteenths = state =>
-  m(Observable(TwoDecimal(OneIndex(state.sixteenths))))
+import { Stream } from '../types'
 
 export const Seperator = m('', ':')
 
-export const TransportClock = state =>
-  m('.clock', {}, [
-    Bars(state),
-    Seperator,
-    Beats(state),
-    Seperator,
-    Sixteenths(state),
-  ])
+export const TransportClock = {
+  view: ({ attrs: { state } }) =>
+    m('.clock', {}, [
+      o(OneIndex(state().bars), { class: 'bars' }),
+      Seperator,
+      o(OneIndex(state().beats)),
+      Seperator,
+      o(TwoDecimal(OneIndex(state().sixteenths))),
+    ]),
+}
