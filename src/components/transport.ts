@@ -6,36 +6,6 @@ import { Observable, Container } from './components'
 import { state } from '../state'
 import { Button } from 'construct-ui'
 
-Transport.scheduleRepeat(time => {
-  Draw.schedule(() => {
-    // console.log('drawing', time, state)
-    state.time(state.transportTime.toBarsBeatsSixteenths())
-    let bbs = state.time().split(':')
-    state.bars(Number(bbs[0]))
-    state.beats(Number(bbs[1]))
-    state.sixteenths(Number(bbs[2]))
-    state.bpm(Transport.bpm.value)
-    // state.state(Transport.state)
-  }, time)
-  // console.log('transport time', time)
-}, '.02')
-
-function TransportStarted(e) {
-  state.state('started')
-  console.log(state.state(), e)
-}
-function TransportStopped(e) {
-  state.state('stopped')
-  console.log(state.state(), e)
-}
-function TransportPause(e) {
-  state.state('paused')
-  console.log(state.state(), e)
-}
-Transport.on('start', TransportStarted)
-Transport.on('stop', TransportStopped)
-Transport.on('pause', TransportPause)
-
 export const Start = {
   view: vnode =>
     m(Button, {
