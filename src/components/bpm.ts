@@ -1,7 +1,6 @@
 import m from 'mithril'
 import { Transport } from 'tone'
-import { Observable } from './components'
-import { NDecimal } from '../utils'
+import { o } from './components'
 import { Button, ControlGroup } from 'construct-ui'
 import { Stream } from '../types'
 
@@ -20,28 +19,28 @@ export const BpmDec = m(Button, {
   },
 })
 
-export const BpmSlider = (bpm: Stream) =>
-  m('input[type=range]', {
-    min: 1,
-    max: 200,
-    value: Transport.bpm.value,
-    oninput: ({ target }) => {
-      let newBpm = Number(target.value)
-      Transport.set({ bpm: newBpm })
-    },
-    oncreate: ({ dom }) => {
-      bpm.map(v => {
-        dom.value = v
-      })
-    },
-  })
+export const BpmSlider = {
+  view: () =>
+    m('input[type=range]', {
+      min: 1,
+      max: 200,
+      value: Transport.bpm.value,
+      oninput: ({ target }) => {
+        let newBpm = Number(target.value)
+        console.log('bpm slider', newBpm)
+        Transport.set({ bpm: newBpm })
+      },
+    }),
+}
+export const NDecimal = (s: number, digits: number) => s.toFixed(digits)
+export const BpmValue = (bpm: number) => m(NDecimal(bpm, 1))
 
-export const BpmValue = (bpm: Stream) => m(Observable(NDecimal(bpm, 1)))
-
-export const Bpm = ({ bpm }) =>
-  m(ControlGroup, { class: 'container' }, [
-    BpmDec,
-    BpmValue(bpm),
-    BpmInc,
-    BpmSlider(bpm),
-  ])
+export const Bpm = {
+  view: ({ attrs: { state } }) =>
+    m(ControlGroup, { class: 'container' }, [
+      BpmDec,
+      o(state().bpm),
+      BpmInc,
+      m(BpmSlider, { state }),
+    ]),
+}
