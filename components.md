@@ -22,8 +22,9 @@ const Component = m('', {}, [])
 app = Component
 ```
 
-## Object components
+## POJO components
 
+**P**lain **O**ld **J**avascript **O**bjects
 Components can also be defined as objects, to be consumed later. The only required property is `view`, which must return a mithril object, component, or direct value.
 
 ```javascript
@@ -48,15 +49,29 @@ const Component = {
 app = m(Component)
 ```
 
-## Stateful components
+## Stateful (POJO) components
 
 A component that needs access to some variable (stored in the global `state`), need to have the state passed in at runtime.
 
 ```javascript
-const StatefulComponent = state => ({
+const StatefulComponent = {
   oncreate: vnode => {
-    // do something with state
+    // do something with vnode.attrs.state
+  },
+  view: => m('', {}, []),
+}
+var state = {}
+app = m(StatefulComponent, { state: state })
+```
+
+### Alternate notation:
+
+```javascript
+const ShorthandStatefulComponent = {
+  oncreate: ({ attrs: { state } }) => {
+    // shorthand to use state directly
+    // instead of vnode.attrs.state
   },
   view: () => m('', {}, []),
-})
+}
 ```
