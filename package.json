@@ -24,8 +24,8 @@
   },
   "homepage": "https://github.com/quaternionmedia/midiphonor#readme",
   "devDependencies": {
-    "@types/mithril": "^2.0.9",
-    "parcel": "^2.4.0"
+    "@types/mithril": "^2.0.10",
+    "parcel": "^2.5.0"
   },
   "dependencies": {
     "construct-ui": "^0.3.3",
