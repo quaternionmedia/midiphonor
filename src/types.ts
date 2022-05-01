@@ -12,4 +12,5 @@ export interface TransportState {
   beats: Stream<number>
   sixteenths: Stream<number>
   transportTime: typeof TransportTimeClass
+  connected: string[]
 }

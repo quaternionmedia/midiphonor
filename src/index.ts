@@ -21,7 +21,7 @@ export const Midiphonor = {
 
   },
   view: ({ attrs: { state } }) => [
-    m(Menu),
+    m(Menu, { state }),
     m(Bpm, { state }),
     m(TransportControls, { state }),
     Note,

@@ -1,10 +1,8 @@
 import m from 'mithril'
 import { Button, ButtonGroup, Icons, ListItem, SelectList } from 'construct-ui'
 
-let selected: String[] = []
-
 export const Menu = {
-  view: vnode =>
+  view: ({ attrs: { state } }) =>
     m(ButtonGroup, {}, [
       m(SelectList, {
         items: ['1', '2', '3'],
@@ -14,18 +12,18 @@ export const Menu = {
           label: 'select MIDI device',
         }),
         onSelect: item => {
-          let index = selected.indexOf(item)
+          let index = state().connected.indexOf(item)
           if (index > -1) {
-            selected.splice(index, 1)
+            state().connected.splice(index, 1)
           } else {
-            selected.push(item)
+            state().connected.push(item)
           }
-          console.log('selected', item, index)
+          console.log('state.connected', item, index)
         },
         itemRender: item =>
           m(ListItem, {
             label: item,
-            selected: selected.indexOf(item) > -1,
+            selected: state().connected.indexOf(item) > -1,
           }),
       }),
       m(Button, {

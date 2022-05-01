@@ -14,4 +14,16 @@ export const Actions = (update: Stream, state: Stream) => ({
     state().bpm(Transport.bpm.value)
     state().state(Transport.state)
   },
+  connect: (name: string) => {
+    update({
+      connected: () => {
+        let index = !state().connected.find(name)
+        if (index > -1) {
+          state().connected.push(name)
+        } else {
+          state().connected.splice(index, 1)
+        }
+      },
+    })
+  },
 })

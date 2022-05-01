@@ -13,7 +13,7 @@ export const Observable = (s: Stream) => {
   }
 }
 
-export const o = (o: Stream, attrs: any) => m(Observable(o), attrs)
+export const o = (o: Stream, attrs?: any) => m(Observable(o), attrs)
 
 export const Container = {
   view: vnode => m('.container', vnode.attrs, vnode.children),
