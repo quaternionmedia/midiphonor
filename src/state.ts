@@ -3,7 +3,7 @@ import { TransportState } from './types'
 import merge from 'mergerino'
 import { stream, scan } from 'flyd'
 
-const initialState = {
+const initialState: TransportState = {
   bpm: stream(120),
   time: stream(0),
   bars: stream(0),
