@@ -9,12 +9,12 @@ export const Observable = (s: Stream) => {
       })
     },
     onremove: ({ dom }) => m.render(dom, null),
-    view: ({ attrs }) => m('', s()),
+    view: () => m('', s()),
   }
 }
 
 export const o = (o: Stream, attrs?: any) => m(Observable(o), attrs)
 
 export const Container = {
-  view: vnode => m('.container', vnode.attrs, vnode.children),
+  view: ({ attrs, children }) => m('.container', attrs, children),
 }
