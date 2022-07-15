@@ -1,35 +1,16 @@
 import m from 'mithril'
-import { Transport, Draw } from 'tone'
+import { Transport } from 'tone'
 import { TransportClock } from './clock'
 import './transport.css'
 import { o, Container } from './components'
 import { Button } from 'construct-ui'
 
-export const Start = {
-  view: vnode =>
-    m(Button, {
-      label: '>',
-      onclick: () => {
-        Transport.start()
-      },
-      ...vnode.attrs,
-    }),
-}
-
 export const Stop = {
-  view: vnode =>
+  view: ({ attrs }) =>
     m(Button, {
       label: '■',
       onclick: () => Transport.stop(),
-      ...vnode.attrs,
-    }),
-}
-export const Pause = {
-  view: vnode =>
-    m(Button, {
-      label: '| |',
-      onclick: () => Transport.pause(),
-      ...vnode.attrs,
+      ...attrs,
     }),
 }
 
