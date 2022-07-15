@@ -2,7 +2,6 @@
   "name": "midiphonor",
   "version": "0.0.1",
   "description": "a MIDI implementation of the Holophonor, using Tone.js",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +28,9 @@
     "parcel": "^2.3.2"
   },
   "dependencies": {
+    "construct-ui": "^0.3.3",
+    "dseg": "^0.46.0",
+    "flyd": "^0.2.8",
     "mithril": "^2.0.4",
     "tone": "^14.7.77"
   }

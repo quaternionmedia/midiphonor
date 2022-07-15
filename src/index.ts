@@ -1,17 +1,11 @@
 import m from 'mithril'
-import { Synth } from 'tone'
+import { Note } from './components/note'
+import { TransportControls } from './components/transport'
+import { Bpm } from './components/bpm'
+import '../node_modules/construct-ui/lib/index.css'
 
-export const Home = () => {
-  return {
-    view: (vnode) =>
-      m('input[type=button]', {
-        value: 'start',
-        onclick: (e) => {
-          const synth = new Synth().toDestination()
-          synth.triggerAttackRelease('c4', '8n')
-        },
-      }),
-  }
+export const Home = {
+  view: vnode => [Bpm, TransportControls, Note],
 }
 
 m.route(document.body, '/', {
