@@ -1,18 +1,19 @@
 import m from 'mithril'
 import { Observable } from './components'
-import { state } from '../state'
-import { OneIndex, TwoDigit, TwoDecimal } from '../utils'
+import { OneIndex, TwoDecimal } from '../utils'
 
-export const Bars = m(Observable(OneIndex(state.bars)))
-export const Beats = m(Observable(OneIndex(state.beats)))
-export const Sixteenths = m(Observable(TwoDecimal(state.sixteenths)))
+export const Bars = state => m(Observable(OneIndex(state.bars)))
+export const Beats = state => m(Observable(OneIndex(state.beats)))
+export const Sixteenths = state =>
+  m(Observable(TwoDecimal(OneIndex(state.sixteenths))))
 
 export const Seperator = m('', ':')
 
-export const TransportClock = m('.clock', {}, [
-  Bars,
-  Seperator,
-  Beats,
-  Seperator,
-  Sixteenths,
-])
+export const TransportClock = state =>
+  m('.clock', {}, [
+    Bars(state),
+    Seperator,
+    Beats(state),
+    Seperator,
+    Sixteenths(state),
+  ])
