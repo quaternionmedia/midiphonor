@@ -12,9 +12,13 @@ elif [ $1 = "init" ]; then
   shift
   docker run -it -v $(pwd):/app -w /app node yarn install
 
-elif [ $1 = "dev" ]; then
+elif [ $1 = "dev" -o $1 = "d" ]; then
   shift
-  docker run -it -v $(pwd):/app -w /app -p 1234:1234 node yarn parcel src/index.html
+  docker run -it -v $(pwd):/app -w /app -p 1234:1234 node yarn parcel src/index.html "$@"
+
+elif [ $1 = "build"  -o $1 = "b" ]; then
+  shift
+  docker run -it -v $(pwd):/app -w /app node yarn parcel build src/index.html "$@"
 
 elif [ $1 = "i" -o $1 = "install" ]; then
   shift

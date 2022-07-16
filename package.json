@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/quaternionmedia/midiphonor#readme",
   "devDependencies": {
+    "@types/mergerino": "^0.4.0",
     "@types/mithril": "^2.0.11",
     "parcel": "^2.6.2"
   },
@@ -32,6 +33,7 @@
     "dseg": "^0.46.0",
     "flyd": "^0.2.8",
     "mithril": "^2.2.2",
+    "mergerino": "^0.4.0",
     "tone": "^14.8.40"
   }
 }

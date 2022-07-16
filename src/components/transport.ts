@@ -1,81 +1,39 @@
 import m from 'mithril'
-import { Transport, Draw } from 'tone'
+import { Transport } from 'tone'
 import { TransportClock } from './clock'
 import './transport.css'
-import { Observable, Container } from './components'
-import { state } from '../state'
+import { o, Container } from './components'
 import { Button } from 'construct-ui'
 
-Transport.scheduleRepeat(time => {
-  Draw.schedule(() => {
-    // console.log('drawing', time, state)
-    state.time(state.transportTime.toBarsBeatsSixteenths())
-    let bbs = state.time().split(':')
-    state.bars(Number(bbs[0]))
-    state.beats(Number(bbs[1]))
-    state.sixteenths(Number(bbs[2]))
-    state.bpm(Transport.bpm.value)
-    // state.state(Transport.state)
-  }, time)
-  // console.log('transport time', time)
-}, '.02')
-
-function TransportStarted(e) {
-  state.state('started')
-  console.log(state.state(), e)
-}
-function TransportStopped(e) {
-  state.state('stopped')
-  console.log(state.state(), e)
-}
-function TransportPause(e) {
-  state.state('paused')
-  console.log(state.state(), e)
-}
-Transport.on('start', TransportStarted)
-Transport.on('stop', TransportStopped)
-Transport.on('pause', TransportPause)
-
-export const Start = {
-  view: vnode =>
-    m(Button, {
-      label: '>',
-      onclick: () => {
-        Transport.start()
-      },
-      ...vnode.attrs,
-    }),
-}
-
 export const Stop = {
-  view: vnode =>
+  view: ({ attrs }) =>
     m(Button, {
       label: '■',
       onclick: () => Transport.stop(),
-      ...vnode.attrs,
+      ...attrs,
     }),
 }
-export const Pause = {
-  view: vnode =>
+
+export const PlayPause = {
+  view: ({ attrs: { state } }) =>
     m(Button, {
-      label: '| |',
-      onclick: () => Transport.pause(),
-      ...vnode.attrs,
+      label: o(state().state),
+      onclick: () => {
+        console.log('clicked PlayPause')
+        if (state().state() == 'started') {
+          Transport.pause()
+        } else {
+          Transport.start()
+        }
+      },
     }),
 }
 
-export const PlayPause = state => ({
-  oncreate: vnode => {
-    state.state.map(s => {
-      console.log('changing play button', s, vnode)
-      m.render(vnode.dom, s == 'started' ? m(Pause) : m(Start))
-    })
-  },
-  view: vnode => m('', vnode.attrs),
-})
-
-export const TransportControls = m(Container, {}, [
-  TransportClock(state),
-  m(Stop),
-  m(PlayPause(state)),
-])
+export const TransportControls = {
+  view: ({ attrs: { state } }) =>
+    m(Container, {}, [
+      m(TransportClock, { state }),
+      m(Stop),
+      m(PlayPause, { state }),
+    ]),
+}

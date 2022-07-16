@@ -3,16 +3,18 @@ import { Stream } from '../types'
 
 export const Observable = (s: Stream) => {
   return {
-    oncreate: vnode => {
+    oncreate: ({ dom }) => {
       s.map(value => {
-        m.render(vnode.dom, value)
+        m.render(dom, value)
       })
     },
-    onremove: vnode => m.render(vnode.dom, null),
-    view: () => m('', {}, s()),
+    onremove: ({ dom }) => m.render(dom, null),
+    view: () => m('', s()),
   }
 }
 
+export const o = (o: Stream, attrs?: any) => m(Observable(o), attrs)
+
 export const Container = {
-  view: vnode => m('.container', vnode.attrs, vnode.children),
+  view: ({ attrs, children }) => m('.container', attrs, children),
 }
