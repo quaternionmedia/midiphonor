@@ -1,8 +1,8 @@
 import m from 'mithril'
 import { Transport } from 'tone'
-import { o } from './components'
+import { o } from '../components'
 import { Button, ControlGroup } from 'construct-ui'
-import { Stream } from '../types'
+import { Stream } from '~/types'
 
 export const BpmInc = m(Button, {
   label: '+',

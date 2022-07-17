@@ -1,11 +1,8 @@
 import m from 'mithril'
 import { Transport, TransportTime } from 'tone'
 import { TransportState } from './types'
-import { o, Observable } from './components/components'
 import merge from 'mergerino'
 import { stream, scan } from 'flyd'
-import { syntaxHighlight } from './utils'
-import './syntax.css'
 
 const initialState: TransportState = {
   bpm: stream(120),

@@ -1,13 +1,13 @@
 import m from 'mithril'
-import { Note } from './components/note'
-import { TransportControls } from './components/transport'
-import { Bpm } from './components/bpm'
+import { Note } from './components/generators/note'
+import { TransportControls } from './components/transports/transport'
+import { Bpm } from './components/transports/bpm'
 import { Menu } from './components/menu'
-import { State } from './state'
-import '../node_modules/construct-ui/lib/index.css'
+import { State } from './components/state'
 import { states, update } from './state'
 import { Actions } from './actions'
 import { Transport, Draw } from 'tone'
+import '../node_modules/construct-ui/lib/index.css'
 
 const actions = Actions(update, states)
 
