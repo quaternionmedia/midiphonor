@@ -5,6 +5,12 @@ import './transport.css'
 import { o, Container } from './components'
 import { Button } from 'construct-ui'
 
+export const LABELS = {
+  started: '| |',
+  stopped: '>',
+  paused: '>',
+}
+
 export const Stop = {
   view: ({ attrs }) =>
     m(Button, {
@@ -17,7 +23,7 @@ export const Stop = {
 export const PlayPause = {
   view: ({ attrs: { state } }) =>
     m(Button, {
-      label: o(state().state),
+      label: o(state().state.map(l => LABELS[l])),
       onclick: () => {
         console.log('clicked PlayPause')
         if (state().state() == 'started') {
