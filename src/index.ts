@@ -3,6 +3,7 @@ import { Note } from './components/note'
 import { TransportControls } from './components/transport'
 import { Bpm } from './components/bpm'
 import { Menu } from './components/menu'
+import { State } from './state'
 import '../node_modules/construct-ui/lib/index.css'
 import { states, update } from './state'
 import { Actions } from './actions'
@@ -18,13 +19,13 @@ export const Midiphonor = {
         actions.clockTick(timeString)
       }, time)
     }, '.02')
-
   },
   view: ({ attrs: { state } }) => [
     m(Menu, { state }),
     m(Bpm, { state }),
     m(TransportControls, { state }),
     Note,
+    m(State, { state }),
   ],
 }
 
