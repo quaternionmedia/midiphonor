@@ -1,7 +1,7 @@
 import m from 'mithril'
 import { Transport, TransportTime } from 'tone'
 import { TransportState } from './types'
-import { Observable } from './components/components'
+import { o, Observable } from './components/components'
 import merge from 'mergerino'
 import { stream, scan } from 'flyd'
 import { syntaxHighlight } from './utils'
@@ -22,7 +22,13 @@ const initialState: TransportState = {
 State viewer
 */
 export const State = {
-  view: ({ attrs: { state } }) => m('pre', {}, m.trust(syntaxHighlight(state))),
+  oncreate: ({ dom, attrs: { state } }) => {
+    state.map(s => {
+      // console.log('new state', s)
+      m.render(dom, m('pre', {}, JSON.stringify(state, null, 2)))
+    })
+  },
+  view: ({ attrs: { state } }) => m('pre', {}, JSON.stringify(state, null, 2)),
 }
 
 export const update = stream()
