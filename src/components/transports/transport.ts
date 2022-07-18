@@ -2,7 +2,7 @@ import m from 'mithril'
 import { Transport } from 'tone'
 import { TransportClock } from './clock'
 import './transport.css'
-import { o, Container } from './components'
+import { o, Container } from '../components'
 import { Button } from 'construct-ui'
 
 export const LABELS = {

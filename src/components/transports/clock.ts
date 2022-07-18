@@ -1,7 +1,7 @@
 import m from 'mithril'
-import { o } from './components'
-import { OneIndex, TwoDecimal } from '../utils'
-import { Stream } from '../types'
+import { o } from '../components'
+import { OneIndex, TwoDecimal } from '../../utils/streams'
+import { Stream } from '../../types'
 
 export const Seperator = m('', ':')
 

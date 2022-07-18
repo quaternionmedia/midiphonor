@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'DSEG7';
-  src: url('../../node_modules/dseg/fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf');
+  src: url('~/node_modules/dseg/fonts/DSEG7-Classic/DSEG7Classic-Regular.ttf');
 }
 
 .clock {
