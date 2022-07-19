@@ -27,9 +27,12 @@ export function playNote(
   dest.triggerAttackRelease(note, duration, time)
 }
 
-export const Note = m(ButtonUi, {
-  label: 'play random note',
-  onclick: () => {
-    playNote()
-  },
-})
+export const Note = {
+  view: () =>
+    m(ButtonUi, {
+      label: 'play random note',
+      onclick: () => {
+        playNote()
+      },
+    }),
+}

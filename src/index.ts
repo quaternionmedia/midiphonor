@@ -24,7 +24,7 @@ export const Midiphonor = {
     m(Menu, { state }),
     m(Bpm, { state }),
     m(TransportControls, { state }),
-    Note,
+    m(Note),
     m(State, { state }),
   ],
 }
