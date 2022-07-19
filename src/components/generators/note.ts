@@ -7,7 +7,7 @@ import {
 } from '../../utils/music'
 
 // TODO: move synth creation to state
-let polySynth = new PolySynth().toDestination()
+export let polySynth = new PolySynth().toDestination()
 
 /**
   Play a note through a basic synth

@@ -4,6 +4,7 @@ import { TransportControls } from './components/transports/transport'
 import { Bpm } from './components/transports/bpm'
 import { Menu } from './components/menu'
 import { State } from './components/state'
+import { Synth } from './components/generators/synth'
 import { states, update } from './state'
 import { Actions } from './actions'
 import { Transport, Draw } from 'tone'
@@ -25,6 +26,7 @@ export const Midiphonor = {
     m(Bpm, { state }),
     m(TransportControls, { state }),
     m(Note),
+    m(Synth),
     m(State, { state }),
   ],
 }
