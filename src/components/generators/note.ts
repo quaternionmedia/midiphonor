@@ -7,9 +7,17 @@ import {
   chooseNoteAndOctaveRandomly,
 } from '../../utils/music'
 
-//define polysynth
+// TODO: move synth creation to state
 let polySynth = new PolySynth().toDestination()
 
+/**
+  Play a note through a basic synth
+
+  @param dest: Synth Where to route the note
+  @param note: String The note to play, e.g. 'C4' - default random
+  @param duration: String The duration of note to play, e.g. '8n' for eight note
+  @param time: Time When to play the note
+*/
 export function playNote(
   dest = polySynth,
   note = chooseNoteAndOctaveRandomly(),
