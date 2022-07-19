@@ -34,4 +34,3 @@ m.route(document.body, '/', {
     view: () => m(Midiphonor, { state: states, actions }),
   },
 })
-// states.map(() => m.redraw())
