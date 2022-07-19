@@ -32,8 +32,9 @@
     "construct-ui": "^0.3.3",
     "dseg": "^0.46.0",
     "flyd": "^0.2.8",
-    "mithril": "^2.2.2",
     "mergerino": "^0.4.0",
+    "mithril": "^2.2.2",
+    "nexusui": "^2.1.6",
     "tone": "^14.8.40"
   }
 }

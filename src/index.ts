@@ -24,7 +24,7 @@ export const Midiphonor = {
     m(Menu, { state }),
     m(Bpm, { state }),
     m(TransportControls, { state }),
-    Note,
+    m(Note),
     m(State, { state }),
   ],
 }
@@ -34,4 +34,3 @@ m.route(document.body, '/', {
     view: () => m(Midiphonor, { state: states, actions }),
   },
 })
-// states.map(() => m.redraw())

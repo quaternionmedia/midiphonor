@@ -5,7 +5,7 @@ import { Stream } from '../types'
   Create an Observable POJO component from a Stream()
 
   @param {Stream} s the stream to map
-  @returns {Object} a POJO component with a {view}
+  @returns {{view: function}} a POJO component with a {view}
 
   This component accepts a Stream(), and returns a component with a view of: `<div>value</div>`
   It is not rendered to a mithril object. To render to a mithril, use:
@@ -28,8 +28,8 @@ export const Observable = (s: Stream) => {
 /**
   Observable mithril component
 
-  @param stream: Stream The stream() to observe. See Observable() for detailed usage.
-  @param attrs: attrs The mithril attributes to pass to the component.
+  @param {Stream} stream The stream() to observe. See Observable() for detailed usage.
+  @param {m.attrs} attrs The mithril attributes to pass to the component.
   @returns {m} a mithril object
 
   This is a mithril component wrapper around the Observable POJO components
@@ -40,9 +40,9 @@ export const o = (o: Stream, attrs?: any) => m(Observable(o), attrs)
 /**
   Creates a Container Object wrapper to contain child elements
 
-  @param attrs: Object the mithril parameters to pass to this container
-  @param children the children to pass in to the container
-  @returns {Object} a POJO component with a view
+  @param {Object} attrs the mithril parameters to pass to this container
+  @param {vnode} children the children to pass in to the container
+  @returns {{view: function}} a POJO component with a view
 */
 export const Container = {
   view: ({ attrs, children }) => m('.container', attrs, children),
