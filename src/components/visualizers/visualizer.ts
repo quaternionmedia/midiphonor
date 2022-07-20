@@ -3,6 +3,7 @@ import { Grid } from 'construct-ui'
 
 import { Meter } from './meter'
 import { Oscilloscope } from './oscilloscope'
+import { Spectrogram } from './spectrogram'
 
 export const Visualizer = {
   oncreate: ({ dom }) => {},
@@ -15,6 +16,6 @@ export const Visualizer = {
         align: 'center',
         justify: 'center',
       },
-      [m(Meter), m(Oscilloscope)]
+      [m(Meter), m(Oscilloscope), m(Spectrogram)]
     ),
 }
