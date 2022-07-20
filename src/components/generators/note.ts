@@ -1,6 +1,7 @@
 import m from 'mithril'
 import { PolySynth, now } from 'tone'
 import { Button } from 'nexusui'
+import { MembraneSynth } from 'tone'
 import {
   chooseDurationRandomly,
   chooseNoteAndOctaveRandomly,
@@ -8,6 +9,7 @@ import {
 
 // TODO: move synth creation to state
 export let polySynth = new PolySynth().toDestination()
+export let membraneSynth = new MembraneSynth().toDestination()
 
 /**
   Play a note through a basic synth

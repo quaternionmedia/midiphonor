@@ -9,6 +9,7 @@ import { states, update } from './state'
 import { Actions } from './actions'
 import { Transport, Draw } from 'tone'
 import { Visualizer } from './components/visualizers/visualizer'
+import { SequencerGroup } from './components/generators/sequencer'
 import '../node_modules/construct-ui/lib/index.css'
 
 const actions = Actions(update, states)
@@ -27,6 +28,7 @@ export const Midiphonor = {
     m(Bpm, { state }),
     m(TransportControls, { state }),
     m(Note),
+    m(SequencerGroup),
     m(Synth),
     m(Visualizer),
     m(State, { state }),
