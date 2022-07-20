@@ -8,6 +8,7 @@ import { Synth } from './components/generators/synth'
 import { states, update } from './state'
 import { Actions } from './actions'
 import { Transport, Draw } from 'tone'
+import { Meter } from './components/visualizers/meter'
 import '../node_modules/construct-ui/lib/index.css'
 
 const actions = Actions(update, states)
@@ -27,6 +28,7 @@ export const Midiphonor = {
     m(TransportControls, { state }),
     m(Note),
     m(Synth),
+    m(Meter),
     m(State, { state }),
   ],
 }
