@@ -11,8 +11,6 @@ import { Transport, Draw } from 'tone'
 import { Visualizer } from './components/visualizers/visualizer'
 import '../node_modules/construct-ui/lib/index.css'
 
-const actions = Actions(update, states)
-
 export const Midiphonor = {
   oninit: ({ attrs: { cell, Actions } }) => {
     Transport.scheduleRepeat(time => {
