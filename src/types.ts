@@ -14,3 +14,9 @@ export interface TransportState {
   transportTime: typeof TransportTimeClass
   connected: string[]
 }
+
+export interface Cell {
+  update: Stream
+  state: Stream
+  getState: Stream
+}
