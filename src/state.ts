@@ -15,19 +15,6 @@ const initialState: TransportState = {
   connected: [],
 }
 
-/**
-State viewer
-*/
-export const State = {
-  oncreate: ({ dom, attrs: { state } }) => {
-    state.map(s => {
-      // console.log('new state', s)
-      m.render(dom, m('pre', {}, JSON.stringify(state, null, 2)))
-    })
-  },
-  view: ({ attrs: { state } }) => m('pre', {}, JSON.stringify(state, null, 2)),
-}
-
 export const update = stream()
 export const states = scan(merge, initialState, update)
 export const getState = () => states()
