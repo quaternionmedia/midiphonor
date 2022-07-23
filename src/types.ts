@@ -18,5 +18,6 @@ export interface TransportState {
 export interface Cell {
   update: Stream
   state: Stream
-  getState: Stream
+  getState: Object
+  getStream: Stream
 }
