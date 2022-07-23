@@ -1,13 +1,14 @@
 import m from 'mithril'
 import { o } from '../components'
+import './clock.css'
 
 export const TransportClock = {
   view: ({ attrs: { cell } }) =>
     m('.clock', {}, [
-      cell.state.bars,
+      o(cell.state.bars),
       ':',
-      cell.state.beats,
+      o(cell.state.beats),
       ':',
-      cell.state.sixteenths,
+      o(cell.state.sixteenths),
     ]),
 }
