@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/mergerino": "^0.4.0",
     "@types/mithril": "^2.0.11",
+    "meiosis-tracer": "^4.0.0",
     "parcel": "^2.6.2"
   },
   "dependencies": {
