@@ -4,6 +4,7 @@ import { Interval } from 'nexusui'
 import { playNote, membraneSynth } from './note'
 import { Transport } from 'tone'
 import { Button } from 'construct-ui'
+import './sequencer.css'
 
 // TODO: move sequencer creation to state/component architecture
 export var sequencer
@@ -21,7 +22,7 @@ export const Sequencer = {
     })
     //TODO: move colors to theme in state
     sequencer.colorize('fill', '#bbb')
-    sequencer.colorize('accent', '#222')
+    sequencer.colorize('accent', '#85c')
 
     sequencer.on('change', function (v) {
       console.log(v)
@@ -75,13 +76,5 @@ export const SequencerStop = {
 
 export const SequencerGroup = {
   view: () =>
-    m(
-      '',
-      {
-        style: {
-          backgroundColor: '#222',
-        },
-      },
-      [m(SequencerStart), m(SequencerStop), m(Sequencer)]
-    ),
+    m('.sequencer', {}, [m(SequencerStart), m(SequencerStop), m(Sequencer)]),
 }
