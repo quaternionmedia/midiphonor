@@ -1,5 +1,5 @@
 import m from 'mithril'
-import { Sequencer as NexusSequencer } from 'nexusui'
+import { Sequencer as NexusSequencer, context } from 'nexusui'
 import { Interval } from 'nexusui'
 import { playNote, membraneSynth } from './note'
 import { Transport } from 'tone'
@@ -57,6 +57,7 @@ export const SequencerStart = {
     m(Button, {
       label: 'Sequencer Start',
       onclick: e => {
+        context.resume()
         sequencer.interval.start()
       },
     }),
