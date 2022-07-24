@@ -5,6 +5,7 @@
 
 .clock {
   display: inline-flex;
+  min-width: 150px;
   border: 3px aqua;
   border-style: outset;
   color: #0f0;
@@ -14,7 +15,7 @@
 }
 
 .clock * {
-  padding-left: 0.5rem;
+  padding-left: 5px;
 }
 
 .container {
