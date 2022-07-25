@@ -17,7 +17,7 @@ export const Synth = {
       highNote: 97,
     })
 
-    piano.on('change', function (v) {
+    piano.on('change', function (v: Change) {
       console.log(v)
       if (v.state) {
         // TODO: remove static 8n duration
@@ -26,4 +26,9 @@ export const Synth = {
     })
   },
   view: () => m(''),
+}
+
+interface Change {
+  state: boolean
+  note: number
 }
