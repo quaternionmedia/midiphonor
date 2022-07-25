@@ -1,29 +1,17 @@
 import { Transport } from 'tone'
-import { Stream } from './types'
-import { stream } from 'flyd'
+import { Cell } from './types'
 
-export const Actions = (update: Stream, state: Stream) => ({
-  clockTick: (t: String) => {
+export const Actions = {
+  clockTick: (cell: Cell, t: String) => {
+    console.log('clockTick', cell, t)
     let bbs = t.split(':')
-    update({
+    cell.update({
       time: t,
-    })
-    state().bars(Number(bbs[0]))
-    state().beats(Number(bbs[1]))
-    state().sixteenths(Number(bbs[2]))
-    state().bpm(Transport.bpm.value)
-    state().state(Transport.state)
-  },
-  connect: (name: string) => {
-    update({
-      connected: () => {
-        let index = !state().connected.find(name)
-        if (index > -1) {
-          state().connected.push(name)
-        } else {
-          state().connected.splice(index, 1)
-        }
-      },
+      bars: Number(bbs[0]),
+      beats: Number(bbs[1]),
+      sixteenths: Number(bbs[2]),
+      bpm: Transport.bpm.value,
+      state: Transport.state,
     })
   },
-})
+}

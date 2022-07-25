@@ -2,9 +2,9 @@ import m from 'mithril'
 import { Button, ButtonGroup, Icons, ListItem, SelectList } from 'construct-ui'
 
 export const Menu = {
-  view: ({ attrs: { state } }) =>
+  view: ({ attrs: { cell } }) =>
     m(ButtonGroup, {}, [
-      m(MidiPortSelect, { state }),
+      m(MidiPortSelect, { cell }),
       m(Button, {
         iconLeft: Icons.APERTURE,
         label: 'button',
@@ -17,7 +17,7 @@ export const Menu = {
 }
 
 export const MidiPortSelect = {
-  view: ({ attrs: { state } }) =>
+  view: ({ attrs: { cell } }) =>
     m(SelectList, {
       items: ['1', '2', '3'],
       label: 'select',
@@ -26,20 +26,24 @@ export const MidiPortSelect = {
         label: 'select MIDI device',
       }),
       onSelect: item => {
-        let index = state().connected.indexOf(item)
+        let connected = cell.getState().connected
+        let index = connected.indexOf(item)
+        console.log('selected', item, index)
         if (index > -1) {
           // Found in connected list. Disconnect
-          state().connected.splice(index, 1)
+          connected.splice(index, 1)
+          cell.update({ connected })
         } else {
           // not found. Connect
-          state().connected.push(item)
+          connected.push(item)
+          cell.update({ connected })
         }
         // console.log('state.connected', item, index)
       },
       itemRender: item =>
         m(ListItem, {
           label: item,
-          selected: state().connected.indexOf(item) > -1,
+          selected: cell.state.connected.indexOf(item) > -1,
         }),
     }),
 }
