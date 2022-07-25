@@ -2,7 +2,7 @@ import m from 'mithril'
 import { Transport } from 'tone'
 import { TransportClock } from './clock'
 import './transport.css'
-import { Container } from '../components'
+import { o, Container } from '../components'
 import { Button } from 'construct-ui'
 
 export const LABELS = {
@@ -23,10 +23,10 @@ export const Stop = {
 export const PlayPause = {
   view: ({ attrs: { cell } }) =>
     m(Button, {
-      label: cell.state.state,
+      label: o(cell.state.state),
       onclick: () => {
         console.log('clicked PlayPause', cell, cell.state.state)
-        if (cell.state.state == 'started') {
+        if (cell.state.state() == 'started') {
           Transport.pause()
         } else {
           Transport.start()

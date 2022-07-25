@@ -18,12 +18,9 @@ const initialState: TransportState = {
 export const update = stream()
 export const states = scan(merge, initialState, update)
 export const getState = () => states()
-export const createCell = state => ({ state, getState, update })
+export const getStream = states
+export const createCell = state => ({ state, getState, getStream, update })
 export const cells = states.map(createCell)
-
-cells.map(() => {
-  m.redraw()
-})
 
 window.state = states
 window.cells = cells
