@@ -16,7 +16,7 @@ import { Stream } from '../types'
 export const Observable = (s: Stream) => {
   return {
     oncreate: ({ dom }) => {
-      s.map(value => {
+      s.map((value: any) => {
         m.render(dom, value)
       })
     },
