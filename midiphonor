@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=0.0.1
+VERSION=v0.3.0
 HELP="midiphonor init script"
 
 if [ -z $1 -o $1 = "-h" -o $1 = "--help" ];then
@@ -23,5 +23,9 @@ elif [ $1 = "build"  -o $1 = "b" ]; then
 elif [ $1 = "i" -o $1 = "install" ]; then
   shift
   docker run -it -v $(pwd):/app -w /app node yarn add "$@"
+
+elif [ $1 = "c" -o $1 = "cmd" ]; then
+  shift
+  docker run -it -v $(pwd):/app -w /app node bash "$@"
 
 fi
