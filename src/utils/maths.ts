@@ -1,12 +1,24 @@
 //map function
-export function mapValue(value, inMin, inMax, outMin, outMax) {
-  return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+interface Map {
+  value: number
+  inMin: number
+  inMax: number
+  outMin: number
+  outMax: number
 }
 
-export function mapValueToInteger(value, inMin, inMax, outMin, outMax) {
-  return Math.round(mapValue(value, inMin, inMax, outMin, outMax))
+export function mapValue(map: Map) {
+  return (
+    ((map.value - map.inMin) * (map.outMax - map.outMin)) /
+      (map.inMax - map.inMin) +
+    map.outMin
+  )
 }
 
-export function mapValueToNearestFive(value, inMin, inMax, outMin, outMax) {
-  return Math.round(mapValue(value, inMin, inMax, outMin, outMax) / 5) * 5
+export function mapValueToInteger(map: Map) {
+  return Math.round(mapValue({ ...map }))
+}
+
+export function mapValueToNearestFive(map: Map) {
+  return Math.round(mapValue({ ...map }) / 5) * 5
 }

@@ -32,6 +32,6 @@ export function chooseNoteAndOctaveRandomly() {
   return randomNote + randomOctave
 }
 
-export function mapMidiKeyToFrequency(midiKey) {
+export function mapMidiKeyToFrequency(midiKey: number) {
   return 440 * Math.pow(2, (midiKey - 69) / 12)
 }
