@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=v0.2.0
+VERSION=v0.3.0
 HELP="midiphonor init script"
 
 if [ -z $1 -o $1 = "-h" -o $1 = "--help" ];then
