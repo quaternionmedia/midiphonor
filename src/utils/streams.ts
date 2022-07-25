@@ -1,14 +1,15 @@
-import { Stream } from './types'
+import { Stream } from '../types'
 
 export const TwoDigit = (s: Stream<Number>) =>
-  s.map(v => String(v).padStart(2, '0'))
+  s.map((v: number) => String(v).padStart(2, '0'))
 
-export const TwoDecimal = (s: Stream<Number>) => s.map(v => v.toFixed(2))
+export const TwoDecimal = (s: Stream<Number>) =>
+  s.map((v: number) => v.toFixed(2))
 
-export const NDecimal = (s: Stream<Number>, digits: Number) =>
-  s.map(v => v.toFixed(digits))
+export const NDecimal = (s: Stream<Number>, digits: number) =>
+  s.map((v: number) => v.toFixed(digits))
 
-export const OneIndex = (s: Stream<Number>) => s.map(v => v + 1)
+export const OneIndex = (s: Stream<Number>) => s.map((v: number) => v + 1)
 
 /**Shamelessly stolen from https://stackoverflow.com/a/7220510 */
 export const syntaxHighlight = json => {
