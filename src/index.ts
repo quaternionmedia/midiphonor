@@ -22,7 +22,7 @@ export const Midiphonor = {
   },
   view: ({ attrs: { cell } }) => [
     m(Menu, { cell }),
-    // m(Bpm, { cell }),
+    m(Bpm, { cell }),
     m(TransportControls, { cell }),
     // m(Note),
     // m(Synth),
